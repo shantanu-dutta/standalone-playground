@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+
+export function getBooks() {
+  const http = inject(HttpClient)
+  return http.get('/api/books')
+}
 
 @Component({
   selector: 'app-home',
@@ -8,11 +14,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class HomeComponent {
+  books$ = getBooks()
 }

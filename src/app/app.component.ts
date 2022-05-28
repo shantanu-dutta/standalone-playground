@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+
 import { TitleComponent } from './title/title.component';
 
 @Component({
@@ -9,6 +10,4 @@ import { TitleComponent } from './title/title.component';
   standalone: true,
   imports: [RouterModule, TitleComponent],
 })
-export class AppComponent {
-  title = 'standalone-playground';
-}
+export class AppComponent {}
