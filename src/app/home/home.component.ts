@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { NAME } from '../app.routes';
 
 export function getBooks() {
-  const http = inject(HttpClient)
-  return http.get('/api/books')
+  const http = inject(HttpClient);
+  return http.get('/api/books');
 }
 
 @Component({
@@ -12,8 +13,9 @@ export function getBooks() {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  books$ = getBooks()
+  books$ = getBooks();
+  readonly name = inject(NAME);
 }

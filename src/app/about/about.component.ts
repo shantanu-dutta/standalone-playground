@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NAME } from '../app.routes';
 
 @Component({
   selector: 'app-about',
@@ -8,4 +9,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css'],
 })
-export class AboutComponent {}
+export class AboutComponent {
+  readonly name = inject(NAME);
+}

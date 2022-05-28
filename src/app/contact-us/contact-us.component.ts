@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NAME } from '../app.routes';
 
 @Component({
   selector: 'app-contact-us',
@@ -8,4 +9,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './contact-us.component.html',
   styleUrls: ['./contact-us.component.css'],
 })
-export class ContactUsComponent {}
+export class ContactUsComponent {
+  readonly name = inject(NAME);
+}

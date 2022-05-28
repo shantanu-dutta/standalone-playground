@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import {
   ActivatedRouteSnapshot,
@@ -21,7 +21,7 @@ export class AboutTitleResolver implements Resolve<string> {
 
 @Injectable({ providedIn: 'root' })
 export class PageTitleStrategy extends TitleStrategy {
-  constructor(@Inject(Title)private  title: Title) {
+  constructor(@Inject(Title) private title: Title) {
     super();
   }
 
@@ -34,6 +34,8 @@ export class PageTitleStrategy extends TitleStrategy {
   }
 }
 
+export const NAME = new InjectionToken<string>('name token');
+
 export const routes: Route[] = [
   {
     path: '',
@@ -44,6 +46,12 @@ export const routes: Route[] = [
     path: 'home',
     loadComponent: () =>
       import('./home/home.component').then((c) => c.HomeComponent),
+    providers: [
+      {
+        provide: NAME,
+        useValue: 'foo',
+      },
+    ],
   },
   {
     path: 'contact-us',
@@ -51,11 +59,23 @@ export const routes: Route[] = [
       import('./contact-us/contact-us.component').then(
         (c) => c.ContactUsComponent
       ),
+    providers: [
+      {
+        provide: NAME,
+        useValue: 'bar',
+      },
+    ],
   },
   {
     path: 'about',
     title: AboutTitleResolver,
     loadChildren: () =>
       import('./about/about.routes').then((m) => m.aboutRoutes),
+    providers: [
+      {
+        provide: NAME,
+        useValue: 'baz',
+      },
+    ],
   },
 ];
